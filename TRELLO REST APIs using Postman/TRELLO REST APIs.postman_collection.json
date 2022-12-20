@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "a7db5e3b-fb36-4dfd-8ce4-8668cdeeea13",
+		"name": "TRELLO REST APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13272568"
+	},
+	"item": [
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Boards",
+					"item": [
+						{
+							"name": "Lists",
+							"item": [
+								{
+									"name": "Create new list",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Test Create New List\", function() {\r",
+													"    pm.expect(pm.response.code).to.equal(200)\r",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{BaseURL}}/1/lists?name=List2&idBoard={{BoardId}}&key={{Key}}&token={{Token}}",
+											"host": [
+												"{{BaseURL}}"
+											],
+											"path": [
+												"1",
+												"lists"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "List2"
+												},
+												{
+													"key": "idBoard",
+													"value": "{{BoardId}}"
+												},
+												{
+													"key": "key",
+													"value": "{{Key}}"
+												},
+												{
+													"key": "token",
+													"value": "{{Token}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get all lists on a board",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Test Get all Lists on a Board\", function() {\r",
+													"    pm.expect(pm.response.code).to.equal(200)\r",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BaseURL}}/1/boards/{{BoardId}}/lists?key={{Key}}&token={{Token}}",
+											"host": [
+												"{{BaseURL}}"
+											],
+											"path": [
+												"1",
+												"boards",
+												"{{BoardId}}",
+												"lists"
+											],
+											"query": [
+												{
+													"key": "key",
+													"value": "{{Key}}"
+												},
+												{
+													"key": "token",
+													"value": "{{Token}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Archive a list",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Test Archive a List\", function() {\r",
+													"    pm.expect(pm.response.code).to.equal(200)\r",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{BaseURL}}/1/lists/{{ListId}}/closed?value=true&key={{Key}}&token={{Token}}",
+											"host": [
+												"{{BaseURL}}"
+											],
+											"path": [
+												"1",
+												"lists",
+												"{{ListId}}",
+												"closed"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "true"
+												},
+												{
+													"key": "key",
+													"value": "{{Key}}"
+												},
+												{
+													"key": "token",
+													"value": "{{Token}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create a board inside an organization",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Test Create new Board\", function() {\r",
+											"    pm.expect(pm.response.code).to.equal(200)\r",
+											"})\r",
+											"\r",
+											"pm.collectionVariables.set(\"BoardId\", pm.response.json().id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/1/boards?name=Board1&idOrganization={{OrgId}}&key={{Key}}&token={{Token}}",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Board1"
+										},
+										{
+											"key": "idOrganization",
+											"value": "{{OrgId}}"
+										},
+										{
+											"key": "key",
+											"value": "{{Key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{Token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get boards in an organization",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Get Boards in an Organization\", function() {\r",
+											"    pm.expect(pm.response.code).to.equal(200)\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/1/organizations/{{OrgId}}/boards?key={{Key}}&token={{Token}}",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"1",
+										"organizations",
+										"{{OrgId}}",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{Key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{Token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a board",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Test Delete a Board\", function() {\r",
+											"    pm.expect(pm.response.code).to.equal(200)\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/1/boards/{{BoardId}}?key={{Key}}&token={{Token}}",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										"{{BoardId}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{Key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{Token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create Organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Create New Organization\", function() {\r",
+									"    pm.expect(pm.response.code).to.equal(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Test Response Time below 2000ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.below(2000)\r",
+									"})\r",
+									"\r",
+									"pm.collectionVariables.set(\"OrgId\", pm.response.json().id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/1/organizations?displayName=organization3&key={{Key}}&token={{Token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"organizations"
+							],
+							"query": [
+								{
+									"key": "displayName",
+									"value": "organization3"
+								},
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organizations for A Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Get Memeber's Organizations\", function() {\r",
+									"    pm.expect(pm.response.code).to.equal(200)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}} /1/members/{{MyID}}/organizations?key={{Key}}&token={{Token}}",
+							"host": [
+								"{{BaseURL}} "
+							],
+							"path": [
+								"1",
+								"members",
+								"{{MyID}}",
+								"organizations"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Test Delete an Organization\", function() {\r",
+									"    pm.expect(pm.response.code).to.equal(200)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/1/organizations/{{OrgId}}?key={{Key}}&token={{Token}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"1",
+								"organizations",
+								"{{OrgId}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{Key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "OrgId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BoardId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ListId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
